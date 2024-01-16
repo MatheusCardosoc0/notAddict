@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { User } from "@prisma/client";
@@ -20,19 +21,16 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
         inline-block 
         rounded-full 
         overflow-hidden
-        h-9 
-        w-9 
-        md:h-11 
-        md:w-11
+        h-[60px]
+        w-[60px] 
       ">
-        <Image
-          fill
+        <img
           src={user?.image || '/images/placeholder.jpg'}
           alt="Avatar"
         />
       </div>
       {isActive ? (
-        <span 
+        <span
           className="
             absolute 
             block 
@@ -46,7 +44,7 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
             w-2 
             md:h-3 
             md:w-3
-          " 
+          "
         />
       ) : null}
     </div>

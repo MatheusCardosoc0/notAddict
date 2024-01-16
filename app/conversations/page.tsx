@@ -1,19 +1,18 @@
-'use client';
+import getConversations from "../actions/getConversations";
+import getCurrentUser from "../actions/getCurrentUser";
+import getUsers from "../actions/getUsers";
+import Userbar from "../components/Userbar";
+import ConversationList from "./components/ConversationList";
 
-import clsx from "clsx";
-
-import useConversation from "../hooks/useConversation";
-import EmptyState from "../components/EmptyState";
-
-const Home = () => {
-  const { isOpen } = useConversation();
+const Home = async () => {
+  const conversations = await getConversations();
+  const users = await getUsers();
+  const currentUser = await getCurrentUser();
 
   return (
-    <div className={clsx(
-      'lg:pl-80 h-full lg:block', 
-      isOpen ? 'block' : 'hidden'
-    )}>
-      <EmptyState />
+    <div className="w-full flex flex-col max-w-[1280px] px-2 justify-center py-4 items-center mx-auto">
+      <Userbar currentUser={currentUser!} />
+      <ConversationList users={users} initialItems={conversations} title="Mensagens" />
     </div>
   )
 }

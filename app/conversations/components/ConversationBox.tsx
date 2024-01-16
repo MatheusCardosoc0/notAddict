@@ -17,9 +17,9 @@ interface ConversationBoxProps {
   selected?: boolean;
 }
 
-const ConversationBox: React.FC<ConversationBoxProps> = ({ 
-  data, 
-  selected 
+const ConversationBox: React.FC<ConversationBoxProps> = ({
+  data,
+  selected
 }) => {
   const otherUser = useOtherUser(data);
   const session = useSession();
@@ -36,8 +36,8 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
   }, [data.messages]);
 
   const userEmail = useMemo(() => session.data?.user?.email,
-  [session.data?.user?.email]);
-  
+    [session.data?.user?.email]);
+
   const hasSeen = useMemo(() => {
     if (!lastMessage) {
       return false;
@@ -55,17 +55,17 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
 
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
-      return 'Sent an image';
+      return 'Imagem';
     }
 
     if (lastMessage?.body) {
       return lastMessage?.body
     }
 
-    return 'Started a conversation';
+    return 'Iniciar conversa';
   }, [lastMessage]);
 
-  return ( 
+  return (
     <div
       onClick={handleClick}
       className={clsx(`
@@ -75,10 +75,17 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         items-center 
         space-x-3 
         p-3 
-        hover:bg-neutral-100
-        rounded-lg
+        hover:bg-gray-700
         transition
         cursor-pointer
+        max-w-[140px]
+        bg-gray-700
+        rounded-md
+        flex-col
+        justify-center
+        border-r-4
+        border-b-4
+        border-[#00000043]
         `,
         selected ? 'bg-neutral-100' : 'bg-white'
       )}
@@ -91,15 +98,29 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <span className="absolute inset-0" aria-hidden="true" />
-          <div className="flex justify-between items-center mb-1">
-            <p className="text-md font-medium text-gray-900">
+          <div className="flex justify-between items-center mb-1 w-full">
+            <p className="text-md font-medium text-white text-center w-full">
               {data.name || otherUser.name}
             </p>
+
+          </div>
+          <div
+            className="flex items-center gap-8"
+          >
+            <p
+              className={clsx(`
+              truncate 
+              text-sm
+              `,
+                hasSeen ? 'text-gray-100' : 'text-white font-medium'
+              )}>
+              {lastMessageText}
+            </p>
             {lastMessage?.createdAt && (
-              <p 
+              <p
                 className="
                   text-xs 
-                  text-gray-400 
+                  text-gray-200 
                   font-light
                 "
               >
@@ -107,19 +128,10 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               </p>
             )}
           </div>
-          <p 
-            className={clsx(`
-              truncate 
-              text-sm
-              `,
-              hasSeen ? 'text-gray-500' : 'text-black font-medium'
-            )}>
-              {lastMessageText}
-            </p>
         </div>
       </div>
     </div>
   );
 }
- 
+
 export default ConversationBox;
