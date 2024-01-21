@@ -68,8 +68,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
   return (
     <div
       onClick={handleClick}
-      className={clsx(`
-        w-full 
+      className={`
         relative 
         flex 
         items-center 
@@ -78,7 +77,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         hover:bg-gray-700
         transition
         cursor-pointer
-        max-w-[140px]
+        min-w-[140px]
         bg-gray-700
         rounded-md
         flex-col
@@ -86,9 +85,9 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         border-r-4
         border-b-4
         border-[#00000043]
-        `,
-        selected ? 'bg-neutral-100' : 'bg-white'
-      )}
+        hover:brightness-125
+        max-w-[140px]
+        `}
     >
       {data.isGroup ? (
         <AvatarGroup users={data.users} />

@@ -15,8 +15,8 @@ interface MessageBoxProps {
   isLast?: boolean;
 }
 
-const MessageBox: React.FC<MessageBoxProps> = ({ 
-  data, 
+const MessageBox: React.FC<MessageBoxProps> = ({
+  data,
   isLast
 }) => {
   const session = useSession();
@@ -33,12 +33,12 @@ const MessageBox: React.FC<MessageBoxProps> = ({
   const avatar = clsx(isOwn && 'order-2');
   const body = clsx('flex flex-col gap-2', isOwn && 'items-end');
   const message = clsx(
-    'text-sm w-fit overflow-hidden', 
-    isOwn ? 'bg-sky-500 text-white' : 'bg-gray-100', 
-    data.image ? 'rounded-md p-0' : 'rounded-full py-2 px-3'
+    'text-sm w-fit overflow-hidden',
+    isOwn ? 'bg-green-500 text-white' : 'bg-gray-100',
+    data.image ? 'rounded-md p-0' : 'rounded-md py-2 px-3'
   );
 
-  return ( 
+  return (
     <div className={container}>
       <div className={avatar}>
         <Avatar user={data.sender} />
@@ -59,8 +59,8 @@ const MessageBox: React.FC<MessageBoxProps> = ({
               alt="Image"
               height="288"
               width="288"
-              onClick={() => setImageModalOpen(true)} 
-              src={data.image} 
+              onClick={() => setImageModalOpen(true)}
+              src={data.image}
               className="
                 object-cover 
                 cursor-pointer 
@@ -74,19 +74,19 @@ const MessageBox: React.FC<MessageBoxProps> = ({
           )}
         </div>
         {isLast && isOwn && seenList.length > 0 && (
-          <div 
+          <div
             className="
             text-xs 
             font-light 
             text-gray-500
             "
           >
-            {`Seen by ${seenList}`}
+            {`Visto por ${seenList}`}
           </div>
         )}
       </div>
     </div>
-   );
+  );
 }
- 
+
 export default MessageBox;

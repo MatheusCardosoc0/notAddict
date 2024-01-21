@@ -28,11 +28,11 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const otherUser = useOtherUser(data);
-  
+
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), 'PP');
   }, [otherUser.createdAt]);
-  
+
   const title = useMemo(() => {
     return data.name || otherUser.name;
   }, [data.name, otherUser.name]);
@@ -50,8 +50,8 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 
   return (
     <>
-      <ConfirmModal 
-        isOpen={confirmOpen} 
+      <ConfirmModal
+        isOpen={confirmOpen}
         onClose={() => setConfirmOpen(false)}
       />
       <Transition.Root show={isOpen} as={Fragment}>
@@ -65,8 +65,8 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-          <div className="fixed inset-0 bg-black bg-opacity-40" />
-        </Transition.Child>
+            <div className="fixed inset-0 bg-black bg-opacity-40" />
+          </Transition.Child>
 
           <div className="fixed inset-0 overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
@@ -90,7 +90,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                               className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                               onClick={onClose}
                             >
-                              <span className="sr-only">Close panel</span>
+                              <span className="sr-only">Fechar painel</span>
                               <IoClose size={24} aria-hidden="true" />
                             </button>
                           </div>
@@ -113,94 +113,94 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                 <IoTrash size={20} />
                               </div>
                               <div className="text-sm font-light text-neutral-600">
-                                Delete
+                                Remover
                               </div>
                             </div>
                           </div>
-                        <div className="w-full pb-5 pt-5 sm:px-0 sm:pt-0">
-                        <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
-                          {data.isGroup && (
-                            <div>
-                              <dt 
-                                className="
+                          <div className="w-full pb-5 pt-5 sm:px-0 sm:pt-0">
+                            <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
+                              {data.isGroup && (
+                                <div>
+                                  <dt
+                                    className="
                                   text-sm 
                                   font-medium 
                                   text-gray-500 
                                   sm:w-40 
                                   sm:flex-shrink-0
                                 "
-                              >
-                                Emails
-                              </dt>
-                              <dd 
-                                className="
+                                  >
+                                    Emails
+                                  </dt>
+                                  <dd
+                                    className="
                                   mt-1 
                                   text-sm 
                                   text-gray-900 
                                   sm:col-span-2
                                 "
-                              >
-                                {data.users.map((user) => user.email).join(', ')}
-                              </dd>
-                            </div>
-                          )}
-                          {!data.isGroup && (
-                            <div>
-                              <dt 
-                                className="
+                                  >
+                                    {data.users.map((user) => user.email).join(', ')}
+                                  </dd>
+                                </div>
+                              )}
+                              {!data.isGroup && (
+                                <div>
+                                  <dt
+                                    className="
                                   text-sm 
                                   font-medium 
                                   text-gray-500 
                                   sm:w-40 
                                   sm:flex-shrink-0
                                 "
-                              >
-                                Email
-                              </dt>
-                              <dd 
-                                className="
+                                  >
+                                    Email
+                                  </dt>
+                                  <dd
+                                    className="
                                   mt-1 
                                   text-sm 
                                   text-gray-900 
                                   sm:col-span-2
                                 "
-                              >
-                                {otherUser.email}
-                              </dd>
-                            </div>
-                          )}
-                          {!data.isGroup && (
-                            <>
-                              <hr />
-                              <div>
-                                <dt 
-                                  className="
+                                  >
+                                    {otherUser.email}
+                                  </dd>
+                                </div>
+                              )}
+                              {!data.isGroup && (
+                                <>
+                                  <hr />
+                                  <div>
+                                    <dt
+                                      className="
                                     text-sm 
                                     font-medium 
                                     text-gray-500 
                                     sm:w-40 
                                     sm:flex-shrink-0
                                   "
-                                >
-                                  Joined
-                                </dt>
-                                <dd 
-                                  className="
+                                    >
+                                      Iniciou
+                                    </dt>
+                                    <dd
+                                      className="
                                     mt-1 
                                     text-sm 
                                     text-gray-900 
                                     sm:col-span-2
                                   "
-                                >
-                                  <time dateTime={joinedDate}>
-                                    {joinedDate}
-                                  </time>
-                                </dd>
-                              </div>
-                            </>
-                          )}
-                        </dl>
-                      </div>
+                                    >
+                                      <time dateTime={joinedDate}>
+                                        {joinedDate}
+                                      </time>
+                                    </dd>
+                                  </div>
+                                </>
+                              )}
+                            </dl>
+                          </div>
                         </div>
                       </div>
                     </div>

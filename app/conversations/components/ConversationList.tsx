@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
-import { MdOutlineGroupAdd } from 'react-icons/md';
+import { MdOutlineGroupAdd, MdSearch } from 'react-icons/md';
 import clsx from "clsx";
 import { find, uniq } from 'lodash';
 
@@ -13,6 +14,8 @@ import { pusherClient } from "@/app/libs/pusher";
 import GroupChatModal from "@/app/components/modals/GroupChatModal";
 import ConversationBox from "./ConversationBox";
 import { FullConversationType } from "@/app/types";
+import Link from "next/link";
+import UserBox from "@/app/conversations/[conversationId]/components/UserBox";
 
 interface ConversationListProps {
   initialItems: FullConversationType[];
@@ -26,6 +29,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
 }) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [allUsers, setAllUsers] = useState(false)
 
   console.log(users)
 
@@ -90,11 +94,13 @@ const ConversationList: React.FC<ConversationListProps> = ({
         <div className="px-6">
           <div className="flex justify-between mb-4 pt-4">
             <div className="text-2xl font-bold text-neutral-800">
-              Mensagens
+              {allUsers ? "Usuários" : "Mensagens"}
             </div>
-            <div
-              onClick={() => setIsModalOpen(true)}
-              className="
+            <div className="flex items-center gap-4" >
+              <div
+                title="Criar grupo"
+                onClick={() => setIsModalOpen(true)}
+                className="
                 rounded-full 
                 p-2 
                 bg-blue-300 
@@ -103,18 +109,41 @@ const ConversationList: React.FC<ConversationListProps> = ({
                 hover:opacity-75 
                 transition
               "
-            >
-              <MdOutlineGroupAdd size={28} />
+              >
+                <MdOutlineGroupAdd size={28} />
+              </div>
+              <div
+                title="Buscar usuários"
+                onClick={() => setAllUsers(prev => !prev)}
+                className="
+                rounded-full 
+                p-2 
+                bg-blue-300 
+                text-gray-900 
+                cursor-pointer 
+                hover:opacity-75 
+                transition
+              "
+              >
+                <MdSearch size={28} />
+              </div>
             </div>
           </div>
           <div className="flex w-full max-w-[90%] overflow-x-scroll gap-4 pb-4" >
-            {items.map((item) => (
-              <ConversationBox
-                key={item.id}
-                data={item}
-                selected={conversationId === item.id}
-              />
-            ))}
+            {!allUsers && (
+              items.map((item) => (
+                <ConversationBox
+                  key={item.id}
+                  data={item}
+                  selected={conversationId === item.id}
+                />
+              ))
+            )}
+            {allUsers && (
+              users.map(user => (
+                <UserBox key={user.id} data={user} />
+              ))
+            )}
           </div>
         </div>
       </aside>

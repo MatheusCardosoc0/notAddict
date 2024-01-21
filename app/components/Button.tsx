@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   danger,
   disabled,
 }) => {
-  return ( 
+  return (
     <button
       onClick={onClick}
       type={type}
@@ -40,12 +40,12 @@ const Button: React.FC<ButtonProps> = ({
         fullWidth && 'w-full',
         secondary ? 'text-gray-900' : 'text-white',
         danger && 'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600',
-        !secondary && !danger && 'bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600'
+        !secondary && !danger && 'bg-green-500 hover:bg-green-600 focus-visible:outline-sky-600'
       )}
     >
       {children}
     </button>
-   );
+  );
 }
- 
+
 export default Button;

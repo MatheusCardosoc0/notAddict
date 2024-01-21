@@ -1,14 +1,14 @@
 'use client';
 
-import { 
-  HiPaperAirplane, 
+import {
+  HiPaperAirplane,
   HiPhoto
 } from "react-icons/hi2";
 import MessageInput from "./MessageInput";
-import { 
-  FieldValues, 
-  SubmitHandler, 
-  useForm 
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm
 } from "react-hook-form";
 import axios from "axios";
 import { CldUploadButton } from "next-cloudinary";
@@ -45,12 +45,12 @@ const Form = () => {
     })
   }
 
-  return ( 
-    <div 
+  return (
+    <div
       className="
         py-4 
         px-4 
-        bg-white 
+        bg-gray-900
         border-t 
         flex 
         items-center 
@@ -59,37 +59,37 @@ const Form = () => {
         w-full
       "
     >
-      <CldUploadButton 
-        options={{ maxFiles: 1 }} 
-        onUpload={handleUpload} 
+      <CldUploadButton
+        options={{ maxFiles: 1 }}
+        onUpload={handleUpload}
         uploadPreset="pgc9ehd5"
       >
-        <HiPhoto size={30} className="text-sky-500" />
+        <HiPhoto size={38} className="text-green-500" />
       </CldUploadButton>
-      <form 
-        onSubmit={handleSubmit(onSubmit)} 
+      <form
+        onSubmit={handleSubmit(onSubmit)}
         className="flex items-center gap-2 lg:gap-4 w-full"
       >
-        <MessageInput 
-          id="message" 
-          register={register} 
-          errors={errors} 
-          required 
-          placeholder="Write a message"
+        <MessageInput
+          id="message"
+          register={register}
+          errors={errors}
+          required
+          placeholder="Digite uma mensagem"
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="
             rounded-full 
             p-2 
-            bg-sky-500 
+            bg-green-500 
             cursor-pointer 
-            hover:bg-sky-600 
+            hover:bg-green-700 
             transition
           "
         >
           <HiPaperAirplane
-            size={18}
+            size={28}
             className="text-white"
           />
         </button>
@@ -97,5 +97,5 @@ const Form = () => {
     </div>
   );
 }
- 
+
 export default Form;
