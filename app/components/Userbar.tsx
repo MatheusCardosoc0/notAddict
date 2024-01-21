@@ -34,18 +34,18 @@ const Userbar: React.FC<UserbarProps> = ({
           <div
             className="flex flex-col gap-4 text-white"
           >
-            <h3 className="text-xl font-semibold drop-shadow-[1px_1px_1px_#0000007a]">Tempo longe do(s) vicio(s)</h3>
+            <h3 className="text-xl font-semibold drop-shadow-[1px_1px_1px_#0000007a]">Tempo longe do {currentUser.addict}</h3>
             <div>
               <div
                 className="flex gap-2"
               >
                 <div className="flex flex-col w-[120px] text-lg items-center drop-shadow-[1px_1px_1px_#0000007a] bg-sky-500 rounded-lg p-2">
                   <p>Tempo atual</p>
-                  <p>7:43</p>
+                  <p>00:00</p>
                 </div>
                 <div className="flex flex-col w-[140px] text-lg items-center drop-shadow-[1px_1px_1px_#0000007a] bg-indigo-500 rounded-lg p-2">
                   <p >Tempo Maximo</p>
-                  <p>1:5:22</p>
+                  <p>00:00</p>
                 </div>
               </div>
               <button className="bg-red-500 drop-shadow-[1px_1px_1px_#0000007a] text-2xl mt-12 font-bold text-white p-2 rounded-lg" >Recaida</button>
@@ -60,7 +60,7 @@ const Userbar: React.FC<UserbarProps> = ({
           <div
             className="flex items-center gap-3"
           >
-            <p className="text-white drop-shadow-[1px_1px_1px_#0000007a] text-5xl">7</p>
+            <p className="text-white drop-shadow-[1px_1px_1px_#0000007a] text-5xl">0</p>
             <TbStarsFilled className="text-6xl text-white drop-shadow-[1px_1px_1px_#0000007a]" />
           </div>
 

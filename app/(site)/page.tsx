@@ -3,7 +3,7 @@ import AuthForm from "./components/AuthForm";
 
 const Auth = () => {
   return (
-    <div 
+    <div
       className="
         flex 
         min-h-full 
@@ -23,7 +23,7 @@ const Auth = () => {
           src="/images/logo.png"
           alt="Logo"
         />
-        <h2 
+        <h2
           className="
             mt-6 
             text-center 
@@ -32,12 +32,12 @@ const Auth = () => {
             tracking-tight 
             text-gray-900
           "
-          >
-            Sign in to your account
+        >
+          Entre com sua conta
         </h2>
       </div>
-      <AuthForm />      
-  </div>
+      <AuthForm />
+    </div>
   )
 }
 
